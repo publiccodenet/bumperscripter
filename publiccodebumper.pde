@@ -1,15 +1,18 @@
 // import the library
 import com.hamoid.*;
 import processing.sound.*;
+import processing.video.*;
   
 // Video Settings
 String topic = "Let's talk Public Code";
 String guest = "Cool Guest Speaker";
 String guestOrganization = "Decidem" ;
 
+Movie introMovie;
+
 // Framerates and VideoExport
 float movieFPS = 30;
-int movieDuration = 20; // in seconds
+int movieDuration = 81; // in seconds
 VideoExport videoExport;
 
 //Output filename for generated animation in MP4 fileformat
@@ -21,16 +24,15 @@ PFont fontMulishRegular48, fontMulishSemiBold48, fontMulishBold80;
 //Logo and imagedata needed for animation
 PShape vectorlogo;
 PImage logo, lobbyBackground, liveBadge;
-PGraphics canvas, canvas2;
-ArrayList< PImage > frames;
-
+PGraphics canvas;
 
 //Additional animation calculation variables
 float centerX,centerY;
-float angle;
+float theta, angle;
 
 //Audiofile for use as background audio
-String audioFilename = "publiccodepodcast-sonic-chapter-long.wav";
+//String audioFilename = "publiccodepodcast-sonic-chapter-long.wav";
+String audioFilename = "publiccodepodcast-leader-long.wav";
 
 //Animationstates
 final int animateLogo = 0;
@@ -46,12 +48,13 @@ int state = animateLogo;
 int remaining;
 
 
+
 void setup() {
 
   //Set video size
   size(1920, 1080);
   //Set anti-aliasing (8x oversampling)
-  smooth(8);
+  smooth();
   
   //Setup video capturing 
   videoExport = new VideoExport(this, OutputFile);
@@ -64,6 +67,7 @@ void setup() {
   vectorlogo = loadShape("mark.svg");
   lobbyBackground = loadImage("intro-brackground.png");
   liveBadge = loadImage("livebadge.png");
+  introMovie = new Movie(this, "logo-bumper.mp4");
   
   //Load and set the font
   fontMulishRegular48 = loadFont("Mulish-Regular-48.vlw");
@@ -73,12 +77,12 @@ void setup() {
   //Initialize x,y with center coordinates
   centerX = width/2;
   centerY = width/2;
-  startTime = millis();
-  remaining = movieDuration;
+  startTime = millis()/1000;
+  
   
   //create canvas buffer to draw on
   canvas = createGraphics(width, height);
-  canvas2 = createGraphics(width, height);
+
   
   
   
@@ -92,22 +96,22 @@ void draw() {
   println ("Remaing:" + remaining);
   println ("Timer:" + timer);
   timer = millis()/1000;
-  remaining = movieDuration - timer;
+  
   
   switch(timer){
     
-    case 1: 
+    case 0: 
       state = animateLogo;
       println ("STATE:" + state);
       
       break;
-      
+   /*   
     case 2:
       state = animateHeader;
       println ("STATE:" + state);
       break;
-   
-    case 4:
+   */
+    case 10:
       state = showLobby;
       println ("STATE:" + state);
       break;    
@@ -120,7 +124,10 @@ void draw() {
   switch(state){
     
     case 0: //animateLogo
+    introMovie.play();
+    image (introMovie, 0, 0);
     
+    /*
       canvas.beginDraw();
       canvas.background(#FFFFFF);
       angle += 0.05;
@@ -133,6 +140,7 @@ void draw() {
       canvas.popMatrix();
       canvas.endDraw();
       image (canvas,0,0);
+      */
       break;
     
     case 1: //animateHeader
@@ -177,6 +185,7 @@ void draw() {
 
    // Save a frame!
   videoExport.saveFrame(); 
+  remaining = round(movieDuration-timer-15);
     
   // End when we have exported enough frames 
   // to match the sound duration.
@@ -184,4 +193,8 @@ void draw() {
     videoExport.endMovie();
     exit();
   }  
+}
+
+void movieEvent(Movie m) {
+  m.read();
 }
