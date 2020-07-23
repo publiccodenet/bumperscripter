@@ -9,30 +9,30 @@ ffmpeg version 4.3 Copyright (c) 2000-2020 the FFmpeg developers
   libswscale      5.  7.100 /  5.  7.100
   libswresample   3.  7.100 /  3.  7.100
   libpostproc    55.  7.100 / 55.  7.100
-Input #0, mov,mp4,m4a,3gp,3g2,mj2, from 'D:\source\publiccodebumper\publiccodebumper\publiccodebumper-out.mp4':
+Input #0, mov,mp4,m4a,3gp,3g2,mj2, from 'D:\source\publiccodebumper\publiccodebumper-out.mp4':
   Metadata:
     major_brand     : isom
     minor_version   : 512
     compatible_brands: isomiso2avc1mp41
     encoder         : Lavf58.45.100
     comment         : Made with Video Export for Processing - https://git.io/vAXLk
-  Duration: 00:00:10.03, start: 0.000000, bitrate: 128 kb/s
-    Stream #0:0(und): Video: h264 (High) (avc1 / 0x31637661), yuv420p, 1920x1080, 124 kb/s, 30 fps, 30 tbr, 15360 tbn, 60 tbc (default)
+  Duration: 00:00:30.03, start: 0.000000, bitrate: 338 kb/s
+    Stream #0:0(und): Video: h264 (High) (avc1 / 0x31637661), yuv420p, 1920x1080, 335 kb/s, 30 fps, 30 tbr, 15360 tbn, 60 tbc (default)
     Metadata:
       handler_name    : VideoHandler
-[wav @ 0000029223530600] Discarding ID3 tags because more suitable tags were found.
+[wav @ 0000023e6cac3000] Discarding ID3 tags because more suitable tags were found.
 Guessed Channel Layout for Input Stream #1.0 : stereo
-Input #1, wav, from 'D:\source\publiccodebumper\publiccodebumper\data\publiccodepodcast-sonic-chapter-long.wav':
+Input #1, wav, from 'D:\source\publiccodebumper\data\publiccodepodcast-leader-long.wav':
   Metadata:
     artist          : Felix Faassen - https://www.lonebeard.com
-  Duration: 00:00:13.21, bitrate: 1536 kb/s
+  Duration: 00:01:21.47, bitrate: 1536 kb/s
     Stream #1:0: Audio: pcm_s16le ([1][0][0][0] / 0x0001), 48000 Hz, stereo, s16, 1536 kb/s
 Stream mapping:
   Stream #1:0 (pcm_s16le) -> apad
   apad -> Stream #0:0 (aac)
   Stream #0:0 -> #0:1 (copy)
 Press [q] to stop, [?] for help
-Output #0, mp4, to 'D:\source\publiccodebumper\publiccodebumper\temp-with-audio.mp4':
+Output #0, mp4, to 'D:\source\publiccodebumper\temp-with-audio.mp4':
   Metadata:
     major_brand     : isom
     minor_version   : 512
@@ -42,9 +42,9 @@ Output #0, mp4, to 'D:\source\publiccodebumper\publiccodebumper\temp-with-audio.
     Stream #0:0: Audio: aac (LC) (mp4a / 0x6134706D), 48000 Hz, stereo, fltp, 128 kb/s
     Metadata:
       encoder         : Lavc58.91.100 aac
-    Stream #0:1(und): Video: h264 (High) (avc1 / 0x31637661), yuv420p, 1920x1080, q=2-31, 124 kb/s, 30 fps, 30 tbr, 15360 tbn, 15360 tbc (default)
+    Stream #0:1(und): Video: h264 (High) (avc1 / 0x31637661), yuv420p, 1920x1080, q=2-31, 335 kb/s, 30 fps, 30 tbr, 15360 tbn, 15360 tbc (default)
     Metadata:
       handler_name    : VideoHandler
-frame=  301 fps=0.0 q=-1.0 Lsize=     321kB time=00:00:09.96 bitrate= 263.9kbits/s speed=74.9x    
-video:153kB audio:156kB subtitle:0kB other streams:0kB global headers:0kB muxing overhead: 3.850408%
-[aac @ 00000292231ae140] Qavg: 150.516
+frame=  901 fps=0.0 q=-1.0 Lsize=    1735kB time=00:00:29.97 bitrate= 474.3kbits/s speed=73.7x    
+video:1230kB audio:472kB subtitle:0kB other streams:0kB global headers:0kB muxing overhead: 1.975640%
+[aac @ 0000023e6cd5d600] Qavg: 142.237

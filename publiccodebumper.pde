@@ -2,27 +2,31 @@
 import com.hamoid.*;
 import processing.sound.*;
   
-// create a new VideoExport-object
+// Video Settings
+String topic = "Let's talk Public Code";
+String guest = "Cool Guest Speaker";
+String guestOrganization = "Decidem" ;
+
+// Framerates and VideoExport
 float movieFPS = 30;
-float movieDuration = 10.0; // in seconds
+int movieDuration = 20; // in seconds
 VideoExport videoExport;
 
 //Output filename for generated animation in MP4 fileformat
 String OutputFile = "publiccodebumper-out.mp4";
 
-// Create font
-PFont font;
+// Fonts
+PFont fontMulishRegular48, fontMulishSemiBold48, fontMulishBold80;
 
 //Logo and imagedata needed for animation
 PShape vectorlogo;
-PImage logo;
-PImage background;
-PGraphics layer1;
-PGraphics layer2;
-PGraphics layer3;
+PImage logo, lobbyBackground, liveBadge;
+PGraphics canvas, canvas2;
+ArrayList< PImage > frames;
+
 
 //Additional animation calculation variables
-float x,y;
+float centerX,centerY;
 float angle;
 
 //Audiofile for use as background audio
@@ -35,64 +39,78 @@ final int animateFooter = 2;
 final int showLobby = 3;
 final int animateLive = 4;
 
+//Timers and state
 int startTime;
 int timer;
 int state = animateLogo;
+int remaining;
+
 
 void setup() {
-  // Some settings
-  size(1920, 1080);
-  smooth(8);
 
+  //Set video size
+  size(1920, 1080);
+  //Set anti-aliasing (8x oversampling)
+  smooth(8);
+  
+  //Setup video capturing 
   videoExport = new VideoExport(this, OutputFile);
   videoExport.setFrameRate(movieFPS);
   videoExport.setAudioFileName(audioFilename);
   videoExport.startMovie();
 
+  //Assign media assets
   logo = loadImage("publiccodelogo.png");
   vectorlogo = loadShape("mark.svg");
-  background = loadImage("intro-brackground.png");
+  lobbyBackground = loadImage("intro-brackground.png");
+  liveBadge = loadImage("livebadge.png");
   
   //Load and set the font
-  font = loadFont("Mulish-SemiBold-48.vlw");
-  textFont(font);
-  
- 
+  fontMulishRegular48 = loadFont("Mulish-Regular-48.vlw");
+  fontMulishSemiBold48 = loadFont("Mulish-SemiBold-48.vlw");
+  fontMulishBold80 = loadFont("Mulish-Bold-80.vlw");
   
   //Initialize x,y with center coordinates
-  x = width/2;
-  y = width/2;
+  centerX = width/2;
+  centerY = width/2;
   startTime = millis();
+  remaining = movieDuration;
+  
+  //create canvas buffer to draw on
+  canvas = createGraphics(width, height);
+  canvas2 = createGraphics(width, height);
   
   
-  layer1 = createGraphics(width, height);
   
  
   
 }
 void draw() {
   // set background color
-  background(#FFFFFF);
-  
   
 
+  println ("Remaing:" + remaining);
   println ("Timer:" + timer);
   timer = millis()/1000;
+  remaining = movieDuration - timer;
   
   switch(timer){
     
     case 1: 
       state = animateLogo;
       println ("STATE:" + state);
+      
       break;
       
-      
-    case 3:
+    case 2:
       state = animateHeader;
       println ("STATE:" + state);
       break;
    
-    
+    case 4:
+      state = showLobby;
+      println ("STATE:" + state);
+      break;    
   
   }
   
@@ -101,37 +119,59 @@ void draw() {
  
   switch(state){
     
-    case 0:
- 
-  
+    case 0: //animateLogo
+    
+      canvas.beginDraw();
+      canvas.background(#FFFFFF);
       angle += 0.05;
       float theta = 3 + (3 * sin(angle)); //DIFFERENCE TO A SMOOTHER OSCILATION
       //THE 3+ IS TO MOVE THE ENTIRE GRAPH UP TO POSITIVE VALUES
-         
-      
-      pushMatrix();
-      
-      translate(width/2, height/2);
-      scale(theta);
-      shape(vectorlogo, -50, -50, 100, 100);
-      popMatrix();
- 
-    
-  
+      canvas.pushMatrix();
+      canvas.translate(width/2, height/2);
+      canvas.scale(theta);
+      canvas.shape(vectorlogo, -50, -50, 100, 100);
+      canvas.popMatrix();
+      canvas.endDraw();
+      image (canvas,0,0);
       break;
     
-    case 1:
-      
-      pushMatrix();
+    case 1: //animateHeader
+    
+      background(#FFFFFF);
+      image (canvas,0,0);
       fill (0);
-      text("Foundation for Public Code",1050,height/2);
-       popMatrix();
-  
-     
+      textFont(fontMulishBold80);
+      text("Foundation for",centerX-50,centerY);
+      text("Public Code",centerX-50,centerY+100);
+      
       break;
+    
+    case 3: //showLobby
+     
+      image (lobbyBackground,0,0);
+      fill (1);
+      
+      textFont(fontMulishBold80);
+      text(topic,750,420);
+      
+      textFont(fontMulishSemiBold48);
+      text(guest,900,720);
+      
+      text(guestOrganization,900,820);
+      
+      angle += 0.05;
+      theta = 0.5 + (0.5 * sin(angle)); //DIFFERENCE TO A SMOOTHER OSCILATION
+      //THE 3+ IS TO MOVE THE ENTIRE GRAPH UP TO POSITIVE VALUES
+      
+      String tmp = "in " + remaining + " second(s)";
+      text(tmp,200,50);
+      
+      pushMatrix();
+      translate(0, 0);
+      scale(theta);
+      image (liveBadge,10,10);
 
-    
-    
+      popMatrix();
   
   }
 
@@ -144,36 +184,4 @@ void draw() {
     videoExport.endMovie();
     exit();
   }  
-}
-
-
-void drawLogo(int delay) {
-  
-   
-  if (millis() - startTime > startTime + (delay * 1000)){
-  
-  
-  }
-  
-}
-
-void drawLogoText(int delay) {
-  
-  if (millis() - startTime > startTime + (delay * 1000)){
-  
-  
-  }
-  
-  
-  
-}
-
-void drawfooter() {
-  
-}
-
-void drawLobby() {
-  
-  image(background,0,0);
-  
 }
