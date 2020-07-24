@@ -8,6 +8,10 @@ String topic = "Let's talk Public Code";
 String guest = "Cool Guest Speaker";
 String guestOrganization = "Decidem" ;
 
+//Output filename for generated animation in MP4 fileformat
+String OutputFile = "publiccodebumper-out.mp4";
+
+
 Movie introMovie;
 
 // Framerates and VideoExport
@@ -15,20 +19,18 @@ float movieFPS = 30;
 int movieDuration = 81; // in seconds
 VideoExport videoExport;
 
-//Output filename for generated animation in MP4 fileformat
-String OutputFile = "publiccodebumper-out.mp4";
-
 // Fonts
 PFont fontMulishRegular48, fontMulishSemiBold48, fontMulishBold80;
 
 //Logo and imagedata needed for animation
 PShape vectorlogo;
 PImage logo, lobbyBackground, liveBadge;
-PGraphics canvas;
+
 
 //Additional animation calculation variables
 float centerX,centerY;
 float theta, angle;
+
 
 //Audiofile for use as background audio
 //String audioFilename = "publiccodepodcast-sonic-chapter-long.wav";
@@ -36,7 +38,7 @@ String audioFilename = "publiccodepodcast-leader-long.wav";
 
 //Animationstates
 final int animateLogo = 0;
-final int animateHeader = 1;
+final int animateCrossfade = 1;
 final int animateFooter = 2;
 final int showLobby = 3;
 final int animateLive = 4;
@@ -47,8 +49,9 @@ int timer;
 int state = animateLogo;
 int remaining;
 
+int fader = 200;
 
-
+  
 void setup() {
 
   //Set video size
@@ -79,84 +82,53 @@ void setup() {
   centerY = width/2;
   startTime = millis()/1000;
   
-  
-  //create canvas buffer to draw on
-  canvas = createGraphics(width, height);
-
-  
-  
-  
- 
-  
+    
 }
 void draw() {
-  // set background color
   
 
-  println ("Remaing:" + remaining);
-  println ("Timer:" + timer);
   timer = millis()/1000;
-  
-  
+   
   switch(timer){
     
     case 0: 
       state = animateLogo;
-      println ("STATE:" + state);
+      break;
       
+    case 7:
+      state = animateCrossfade;
       break;
-   /*   
-    case 2:
-      state = animateHeader;
-      println ("STATE:" + state);
-      break;
-   */
-    case 10:
+   
+    case 11:
       state = showLobby;
-      println ("STATE:" + state);
       break;    
   
   }
   
-   
-  
+     
  
   switch(state){
     
     case 0: //animateLogo
-    introMovie.play();
-    image (introMovie, 0, 0);
-    
-    /*
-      canvas.beginDraw();
-      canvas.background(#FFFFFF);
-      angle += 0.05;
-      float theta = 3 + (3 * sin(angle)); //DIFFERENCE TO A SMOOTHER OSCILATION
-      //THE 3+ IS TO MOVE THE ENTIRE GRAPH UP TO POSITIVE VALUES
-      canvas.pushMatrix();
-      canvas.translate(width/2, height/2);
-      canvas.scale(theta);
-      canvas.shape(vectorlogo, -50, -50, 100, 100);
-      canvas.popMatrix();
-      canvas.endDraw();
-      image (canvas,0,0);
-      */
+      introMovie.play();
+      image (introMovie, 0, 0);
       break;
     
-    case 1: //animateHeader
-    
-      background(#FFFFFF);
-      image (canvas,0,0);
-      fill (0);
-      textFont(fontMulishBold80);
-      text("Foundation for",centerX-50,centerY);
-      text("Public Code",centerX-50,centerY+100);
+    case 1: //animateCrossfade
+      if (fader >0) {
+        fader = fader - 2;
+        tint (255,fader);
+        }
+      image(introMovie, 0, 0);
+      break;
       
-      break;
-    
     case 3: //showLobby
-     
+      if (fader < 256) {
+        fader = fader + 3;
+        tint (255,fader);
+      }
       image (lobbyBackground,0,0);
+     
       fill (1);
       
       textFont(fontMulishBold80);
@@ -172,7 +144,7 @@ void draw() {
       //THE 3+ IS TO MOVE THE ENTIRE GRAPH UP TO POSITIVE VALUES
       
       String tmp = "in " + remaining + " second(s)";
-      text(tmp,200,50);
+      text(tmp,250,50);
       
       pushMatrix();
       translate(0, 0);
@@ -180,15 +152,14 @@ void draw() {
       image (liveBadge,10,10);
 
       popMatrix();
-  
+
   }
 
    // Save a frame!
   videoExport.saveFrame(); 
-  remaining = round(movieDuration-timer-15);
+  remaining = round(movieDuration-introMovie.duration()-startTime-timer);
     
   // End when we have exported enough frames 
-  // to match the sound duration.
   if(frameCount > round(movieFPS * movieDuration)) {
     videoExport.endMovie();
     exit();
