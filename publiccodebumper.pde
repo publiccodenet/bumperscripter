@@ -72,11 +72,9 @@ String remainingStr;
 //Setup is run once. Initialization and setup of objects is done here  
 void setup() {
 
-  //Set video size
+  //Set video resolution size
   size(1920, 1080);
-  //Set anti-aliasing (8x oversampling)
-  smooth(8);
-  
+    
   //Setup video object for exporting through ffmpeg 
   videoExport = new VideoExport(this, OutputFile);
   videoExport.setFrameRate(movieFPS);
@@ -86,7 +84,7 @@ void setup() {
   //Assign media assets
   
   //Select which logo bumper to use at the beginning
-  introMovie = new Movie(this, "logo-bumper.mp4");
+  introMovie = new Movie(this, "logo-bumper-v2.mp4");
   
   // Logo
   vectorlogo = loadShape("mark.svg");
