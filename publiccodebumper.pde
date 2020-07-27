@@ -154,14 +154,20 @@ void draw() {
       // Write the organization
       text(guestOrganization,900,820);
       
-      // Write the amount of seconds remaing to start podcast
-      if (remaining == 1) {
-        remainingStr = "in " + remaining + " second"; 
+      int seconds = remaining % 60;
+      int minutes = (remaining / 60) % 60;
+      
+      if ( seconds < 10){
+        remainingStr = "in " + minutes + ":0" + seconds; 
+      
       }
       else {
-        remainingStr = "in " + remaining + " seconds";
         
+        remainingStr = "in " + minutes + ":" + seconds; 
+      
       }
+      
+      
       text(remainingStr,250,50);
 
       // Animate the Live blinking badge
@@ -194,4 +200,16 @@ void draw() {
 //Read every frame of IntroMovie
 void movieEvent(Movie m) {
   m.read();
+}
+
+void MsConversion(int MS)
+
+{
+int totalSec= (MS / 1000);
+int seconds = (MS / 1000) % 60;
+int minutes = (MS / (1000*60)) % 60;
+int hours = ((MS/(1000*60*60)) % 24);                      
+
+String HumanTime= (hours+": " +minutes+ ": "+ seconds);
+println (HumanTime);
 }
