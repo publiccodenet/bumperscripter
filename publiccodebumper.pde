@@ -3,12 +3,21 @@ import com.hamoid.*;
 import processing.sound.*;
 import processing.video.*;
   
-// Video Settings
-String topic = "Let's talk Public Code";
-String guest = "Cool Guest Speaker";
-String guestOrganization = "Decidem" ;
+// Video titleling settings
 
-//Output filename for generated animation in MP4 fileformat
+//Set the topic title of the video
+String topic = "Let's talk Public Code";
+
+//Set the name of the guest
+String guest = "Cool Guest Speaker";
+
+//Set the name of the organization of the guest
+String guestOrganization = "Organization" ;
+
+//When title is too long to fit screen set longTitle to true
+boolean longTitle = false;
+
+//Set desired output filename for generated animation in MP4 file format
 String OutputFile = "publiccodebumper-out.mp4";
 
 //Set desired Audiofile for use as background audio
@@ -16,7 +25,7 @@ String OutputFile = "publiccodebumper-out.mp4";
 String audioFilename = "publiccodepodcast-leader-long.wav";
 
 //Set desired movie duration in seconds
-int movieDuration = 90; // in seconds
+int movieDuration = 81; // in seconds
 
 
 // Framerates and VideoExport
@@ -66,7 +75,7 @@ void setup() {
   //Set video size
   size(1920, 1080);
   //Set anti-aliasing (8x oversampling)
-  smooth();
+  smooth(8);
   
   //Setup video object for exporting through ffmpeg 
   videoExport = new VideoExport(this, OutputFile);
@@ -75,10 +84,17 @@ void setup() {
   videoExport.startMovie();
   
   //Assign media assets
-  vectorlogo = loadShape("mark.svg");
-  lobbyBackground = loadImage("intro-brackground.png");
-  liveBadge = loadImage("livebadge.png");
+  
+  //Select which logo bumper to use at the beginning
   introMovie = new Movie(this, "logo-bumper.mp4");
+  
+  // Logo
+  vectorlogo = loadShape("mark.svg");
+  
+  // Background image used for waiting lobby
+  lobbyBackground = loadImage("intro-brackground.png");
+  // Live badge logo
+  liveBadge = loadImage("livebadge.png");
   
   //Setup video bumper framereate
   introMovie.frameRate(movieFPS);
@@ -123,7 +139,6 @@ void draw() {
     
     case 0: //animateLogo
       introMovie.play();
-      //introMovieTimeOffset = round(introMovie.duration());
       image (introMovie, 0, 0);
       break;
     
@@ -145,14 +160,24 @@ void draw() {
       
       // Write the title and guest(s)
       textFont(fontMulishBold80);
-      text(topic,750,420);
       
+      // If longTitle is true, perform additional text alignment
+      if (longTitle) {
+        textAlign (BASELINE,LEFT);
+        text(topic,835,320,1020,835);  
+      }
+      else {
+        text(topic,835,420);          
+      }
+     
       // Write the guests
       textFont(fontMulishSemiBold48);
       text(guest,900,720);
       
       // Write the organization
       text(guestOrganization,900,820);
+      
+      // Write time remaining to live
       
       int seconds = remaining % 60;
       int minutes = (remaining / 60) % 60;
@@ -166,8 +191,7 @@ void draw() {
         remainingStr = "in " + minutes + ":" + seconds; 
       
       }
-      
-      
+            
       text(remainingStr,250,50);
 
       // Animate the Live blinking badge
@@ -200,16 +224,4 @@ void draw() {
 //Read every frame of IntroMovie
 void movieEvent(Movie m) {
   m.read();
-}
-
-void MsConversion(int MS)
-
-{
-int totalSec= (MS / 1000);
-int seconds = (MS / 1000) % 60;
-int minutes = (MS / (1000*60)) % 60;
-int hours = ((MS/(1000*60*60)) % 24);                      
-
-String HumanTime= (hours+": " +minutes+ ": "+ seconds);
-println (HumanTime);
 }
