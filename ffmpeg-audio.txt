@@ -16,11 +16,11 @@ Input #0, mov,mp4,m4a,3gp,3g2,mj2, from 'D:\source\publiccodebumper\publiccodebu
     compatible_brands: isomiso2avc1mp41
     encoder         : Lavf58.45.100
     comment         : Made with Video Export for Processing - https://git.io/vAXLk
-  Duration: 00:01:21.03, start: 0.000000, bitrate: 253 kb/s
-    Stream #0:0(und): Video: h264 (High) (avc1 / 0x31637661), yuv420p, 1920x1080, 250 kb/s, 30 fps, 30 tbr, 15360 tbn, 60 tbc (default)
+  Duration: 00:01:30.02, start: 0.000000, bitrate: 241 kb/s
+    Stream #0:0(und): Video: h264 (High) (avc1 / 0x31637661), yuv420p, 1920x1080, 238 kb/s, 29.97 fps, 29.97 tbr, 11988 tbn, 59.94 tbc (default)
     Metadata:
       handler_name    : VideoHandler
-[wav @ 0000013afca07900] Discarding ID3 tags because more suitable tags were found.
+[wav @ 000001be8b317580] Discarding ID3 tags because more suitable tags were found.
 Guessed Channel Layout for Input Stream #1.0 : stereo
 Input #1, wav, from 'D:\source\publiccodebumper\data\publiccodepodcast-leader-long.wav':
   Metadata:
@@ -42,9 +42,9 @@ Output #0, mp4, to 'D:\source\publiccodebumper\temp-with-audio.mp4':
     Stream #0:0: Audio: aac (LC) (mp4a / 0x6134706D), 48000 Hz, stereo, fltp, 128 kb/s
     Metadata:
       encoder         : Lavc58.91.100 aac
-    Stream #0:1(und): Video: h264 (High) (avc1 / 0x31637661), yuv420p, 1920x1080, q=2-31, 250 kb/s, 30 fps, 30 tbr, 15360 tbn, 15360 tbc (default)
+    Stream #0:1(und): Video: h264 (High) (avc1 / 0x31637661), yuv420p, 1920x1080, q=2-31, 238 kb/s, 29.97 fps, 29.97 tbr, 11988 tbn, 11988 tbc (default)
     Metadata:
       handler_name    : VideoHandler
-frame= 1075 fps=0.0 q=-1.0 size=    2048kB time=00:00:35.73 bitrate= 469.5kbits/s speed=71.3x    frame= 2004 fps=2001 q=-1.0 size=    3072kB time=00:01:06.70 bitrate= 377.3kbits/s speed=66.6x    frame= 2431 fps=1743 q=-1.0 Lsize=    3820kB time=00:01:20.96 bitrate= 386.5kbits/s speed=58.1x    
-video:2480kB audio:1252kB subtitle:0kB other streams:0kB global headers:0kB muxing overhead: 2.361532%
-[aac @ 0000013afc0b1c40] Qavg: 2903.877
+frame= 1098 fps=0.0 q=-1.0 size=    2048kB time=00:00:36.54 bitrate= 459.1kbits/s speed=  73x    frame= 2184 fps=2180 q=-1.0 size=    3328kB time=00:01:12.78 bitrate= 374.6kbits/s speed=72.7x    frame= 2698 fps=2008 q=-1.0 Lsize=    3980kB time=00:01:30.02 bitrate= 362.2kbits/s speed=  67x    
+video:2625kB audio:1257kB subtitle:0kB other streams:0kB global headers:0kB muxing overhead: 2.519344%
+[aac @ 000001be8d242340] Qavg: 9207.134
