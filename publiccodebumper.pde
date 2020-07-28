@@ -2,7 +2,7 @@
 import com.hamoid.*;
 import processing.sound.*;
 import processing.video.*;
-  
+
 // Video titleling settings
 
 //Set the topic title of the video
@@ -64,82 +64,88 @@ int introMovieTimeOffset;
 int fader = 200;
 
 
-//set initial starting state to begin movie with 
+//set initial starting state to begin movie with
 int state = animateLogo;
 
 String remainingStr;
 
-//Setup is run once. Initialization and setup of objects is done here  
+//Setup is run once. Initialization and setup of objects is done here
 void setup() {
 
   //Set video resolution size
   size(1920, 1080);
-    
-  //Setup video object for exporting through ffmpeg 
+
+  //Setup video object for exporting through ffmpeg
   videoExport = new VideoExport(this, OutputFile);
   videoExport.setFrameRate(movieFPS);
   videoExport.setAudioFileName(audioFilename);
   videoExport.startMovie();
-  
+
   //Assign media assets
-  
+
   //Select which logo bumper to use at the beginning
   introMovie = new Movie(this, "logo-bumper-v2.mp4");
-  
+
   // Logo
   vectorlogo = loadShape("mark.svg");
-  
+
   // Background image used for waiting lobby
   lobbyBackground = loadImage("intro-brackground.png");
   // Live badge logo
   liveBadge = loadImage("livebadge.png");
-  
+
   //Setup video bumper framereate
   introMovie.frameRate(movieFPS);
-  
+  introMovie.speed(1);
+
   //Load and set the font
   fontMulishRegular48 = loadFont("Mulish-Regular-48.vlw");
   fontMulishSemiBold48 = loadFont("Mulish-SemiBold-48.vlw");
   fontMulishBold80 = loadFont("Mulish-Bold-80.vlw");
-  
+
   //Set fill color to black for text fonts
   fill (1);
-  
+
   //Initialize x,y with center coordinates
   centerX = width/2;
   centerY = width/2;
   startTime = millis()/1000;
-   
+
+  //Wait programming to load libraries
+  delay (4000);
+
+
 }
 
 //Draw is called every frame
 void draw() {
-   
+
+
   //Depending on the timer start a new animation
   switch(timer){
-    
+
     case 0: //Play the intro bumper from 0
       state = animateLogo;
       break;
-      
+
     case 7: // Start the crossfade at 7 seconds
       state = animateCrossfade;
       break;
-   
+
     case 9: // Show the title and guest on the Lobby screen at 9 seconds
       state = showLobby;
-      break;    
-  
+      break;
+
   }
-     
+
   //Based on the animation state draw the specific animation
-  switch(state){ 
-    
+  switch(state){
+
     case 0: //animateLogo
       introMovie.play();
       image (introMovie, 0, 0);
       break;
-    
+
     case 1: //animateCrossfade
       if (fader >0) {
         fader = fader - 2;
@@ -147,54 +153,54 @@ void draw() {
         }
       image(introMovie, 0, 0);
       break;
-      
+
     case 2: //showLobby
       if (fader < 256) {
         fader = fader + 3;
         tint (255,fader);
       }
       // Set the background
-      image (lobbyBackground,0,0);     
-      
+      image (lobbyBackground,0,0);
+
       // Write the title and guest(s)
       textFont(fontMulishBold80);
-      
+
       // If longTitle is true, perform additional text alignment
       if (longTitle) {
         textAlign (BASELINE,LEFT);
-        text(topic,835,320,1020,835);  
+        text(topic,835,320,1020,835);
       }
       else {
-        text(topic,835,420);          
+        text(topic,835,420);
       }
-     
+
       // Write the guests
       textFont(fontMulishSemiBold48);
       text(guest,900,720);
-      
+
       // Write the organization
       text(guestOrganization,900,820);
-      
+
       // Write time remaining to live
-      
+
       int seconds = remaining % 60;
       int minutes = (remaining / 60) % 60;
-      
+
       if ( seconds < 10){
-        remainingStr = "in " + minutes + ":0" + seconds; 
-      
+        remainingStr = "in " + minutes + ":0" + seconds;
+
       }
       else {
-        
-        remainingStr = "in " + minutes + ":" + seconds; 
-      
+
+        remainingStr = "in " + minutes + ":" + seconds;
+
       }
-            
+
       text(remainingStr,250,50);
 
       // Animate the Live blinking badge
       angle += 0.05;
-      theta = 0.5 + (0.5 * sin(angle)); //DIFFERENCE TO A SMOOTHER OSCILATION//Animate the 
+      theta = 0.5 + (0.5 * sin(angle)); //DIFFERENCE TO A SMOOTHER OSCILATION//Animate the
       pushMatrix();
       translate(0, 0);
       scale(theta);
@@ -202,21 +208,23 @@ void draw() {
       popMatrix();
 
   }
-  
+
   //Update the timer in seconds
-  timer = round (millis()/1000);
-  
+  //timer = round (millis()/1000);
+  timer = round(frameCount/movieFPS);
+
+
   // Calculate seconds remaining until end of movie
   remaining = round(movieDuration-(frameCount/movieFPS));
-     
-   // Save a frame to the export movie object
-  videoExport.saveFrame(); 
 
-   // End when we have exported enough frames 
+   // Save a frame to the export movie object
+  videoExport.saveFrame();
+
+   // End when we have exported enough frames
   if(frameCount > round(movieFPS * movieDuration )) {
     videoExport.endMovie();
     exit();
-  }  
+  }
 }
 
 //Read every frame of IntroMovie
