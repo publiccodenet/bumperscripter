@@ -121,7 +121,15 @@ You can customize the script more by changing the introduction bumper as well as
 
 ## Technical Implementation notes
 
-The script works as follows: 1\. Create a video export object 2\. Play and read each frame of a configureable movie file to start with (your won bumper animation) 3\. Export each frame on the video export object 4\. Read a configureable background picture 5\. Add user configureable text on the background 6\. Show a live badge PNG with animation (live badge is also user configurable) 7\. When the configured duration has passed save the last frame and exit script.
+The script works as follows:
+
+1. Create a video export object
+2. Play and read each frame of a configureable movie file to start with (your won bumper animation)
+3. Export each frame on the video export object
+4. Read a configureable background picture
+5. Add user configureable text on the background
+6. Show a live badge PNG with animation (live badge is also user configurable)
+7. When the configured duration has passed save the last frame and exit script.
 
 You can time the above sequence to your likingn in the `switch (timer)` section of the `void draw()` function. This function is called for every frame of the animation. You can also add new animations or Processing code to your liking.
 
