@@ -139,7 +139,7 @@ You can time the above sequence to your likingn in the `switch (timer)` section 
 
 ## License
 
-Music is composed by Felix Faassen (<https://www.lonebeard.com>) and is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
+Music is composed by Felix Faassen (<https://www.lonebeard.com>) and is licensed under a [Creative Commons Attribution-ShareAlike 4.0 International](https://creativecommons.org/licenses/by-sa/4.0/) license.
 
 The script is licensed <https://creativecommons.org/publicdomain/zero/1.0/>
 
