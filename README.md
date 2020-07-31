@@ -52,9 +52,10 @@ For more information about using ffmpeg to export video in Processing please ref
 5. Click on the tab 'Libraries'
 6. In the 'filter' input field type 'video'
 7. Select the 'Video' library and press the 'Install' button at the lower right corner
-8. In the 'filter' input field type 'sound'
-9. Select the 'Sound' library and press the 'Install' button at the lower right corner
-10. Close the window
+8. Select the 'Video Export' library and press the 'Install' button at the lower right corner
+9. In the 'filter' input field type 'sound'
+10. Select the 'Sound' library and press the 'Install' button at the lower right corner
+11. Close the window
 
 You should now be able to run the script by pressing the " PLAY" button at the top left.
 
