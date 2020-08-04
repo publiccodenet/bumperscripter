@@ -1,37 +1,29 @@
-# publiccodebumper
+# Bumper Scripter
 
-A script made in Processing 3.0 to generate videopodcast bumper animation.
+A script made in [Processing 3.0](https://processing.org) to easily generate variations of a livestreamed video bumper animation.
 
-When producing podcasts you need to present and introduction video for people who are joining the live stream so they know the stream is online and active.
+When producing livestreams you want an introduction video for people who are joining the livestream so they know that the stream is online, active and about to start.
 
-However we cannot use a static video because topics and guests change. In order not to have to produce / render a new video for every episode this script will generate this introduction video automatically. By setting a few variables you can configure how long the video should be, what the topic is and who the guests are. In addition you can also configure the starting animation, background and background music.
+We could use a static video but it would be better to cutomize them since topics and guests may change. In order not to have to produce / render a new video for every episode, this script will generate a introduction video automatically. By setting a few variables you can configure how long the video should be, what the topic is and who the guests are. In addition you can also cutsomize the starting animation, logo, background and background music to suit whatever show you might have.
 
 ## Install
 
 To be able to generate a bumper animation you need to install:
 
-- Processing version 3 or higher
-- ffmpeg binary needed to transcode video export stream
+- Processing, version 3 or higher
+- ffmpeg binary (needed to transcode video export stream)
 
-### Get source
-
-Clone the source for Github: `git clone https://github.com/publiccodenet/publiccodebumper.git`
+If you already have these installed you can skip directly to [Get source](#get-source).
 
 ### Download and install Processing
 
-1. Download processing for the operating system your are using: <https://processing.org/download/>
+1. Download Processing for the operating system your are using at: <https://processing.org/download/>
+2. On Windows/MacOS: Go to your download folder and unzip the archive to a folder where you want to install Processing and skip step the reamining steps and follow the instructions on the next paragraph [Install FFmpeg](#installing-ffmpeg)
+3. On Linux: Download either a tarball from <https://processing.org/download/> or use your favorite package manager. Extract the tar ball to the folder where you want to install Processing. Optionally you can run the supplied install.sh script to install icons for your windows manager.
 
-2. On Windows/MacOS: Go to your download folder and unzip the archive to a folder where you want to install Processing and skip step the reamining steps and follow the instructions on the next paragraph 'Install ffmpeg'
+### Installing FFmpeg
 
-3. On Linux: Download either a tarball from <https://processing.org/download/> or use your favorite package manager.
-
-4. Extract the tar ball to the folder where you want to install Processing. Optionally you can run the supplied install.sh script to install icons for your windows manager.
-
-5. After you installed Processing you need to install ffmpeg binary which is required for exporting the video.
-
-### Installing ffmpeg
-
-You need to download and install [FFmpeg](http://ffmpeg.org/) on your system before you can use this script. Note that you might already have it installed! You can find out by typing ffmpeg or ffmpeg.exe in the terminal. If the program is not found:
+You need to download and install [FFmpeg](http://ffmpeg.org/) on your system before you can use the Bumper Scripter. Note that you might already have it installed! You can find out by typing ffmpeg or ffmpeg.exe in the terminal. If the program is not found:
 
 - GNU/Linux systems: use your favorite package manager.
 - Windows: get a [static 32bit or 64bit binary](http://ffmpeg.zeranoe.com/builds/)
@@ -39,59 +31,63 @@ You need to download and install [FFmpeg](http://ffmpeg.org/) on your system bef
 
 For more details and download links, check the official FFmpeg website: [http://ffmpeg.org](http://ffmpeg.org/)
 
-When you start a Processing sketch that uses this library you may be asked to indicate the location of your FFmpeg executable. Browse to the location of the ffmpeg executable. (NOTE: ffmpeg is installed by default on a a lot of Linux distributions by default)
+When you start a Processing sketch that uses this library you may be asked to indicate the location of your FFmpeg executable. Browse to the location of the ffmpeg executable. (NOTE: ffmpeg is installed by default on a lot of Linux distributions by default.)
 
-For more information about using ffmpeg to export video in Processing please refer to <https://github.com/hamoid/video_export_processing>
+For more information about using ffmpeg to export video in Processing please refer to: [https://github.com/hamoid/video_export_processing](https://github.com/hamoid/video_export_processing).
 
-### Installing Required Processing Libraries
+### Get source
 
-1. Start processing
+Clone the source for Github: `git clone https://github.com/publiccodenet/publiccodebumper.git`
+
+### Installing required Processing libraries
+
+1. Start Processing
 2. In the menu choose: File->Open
 3. Navigate to the location where you have cloned the `publiccodebumper` project and open the `publiccodebumper.pde` file
 4. In the menu choose: Tools->Add Tools
 5. Click on the tab 'Libraries'
-6. In the 'filter' input field type 'video'
+6. In the 'Filter' input field type 'video'
 7. Select the 'Video' library and press the 'Install' button at the lower right corner
 8. Select the 'Video Export' library and press the 'Install' button at the lower right corner
-9. In the 'filter' input field type 'sound'
+9. In the 'Filter' input field type 'sound'
 10. Select the 'Sound' library and press the 'Install' button at the lower right corner
 11. Close the window
 
-You should now be able to run the script by pressing the " PLAY" button at the top left.
+You should now be able to run the script by pressing the ▶️ (Run) button at the top left corner.
 
 On Linux you might get the error:
 
 ```
-nsatisfiedLinkError: Error looking up function 'gst_date_get_type': /usr/lib/x86_64-linux-gnu/libgstreamer-1.0.so: undefined symbol: gst_date_get_type
+UnsatisfiedLinkError: Error looking up function 'gst_date_get_type': /usr/lib/x86_64-linux-gnu/libgstreamer-1.0.so: undefined symbol: gst_date_get_type
 UnsatisfiedLinkError: Error looking up function 'gst_date_get_type': /usr/lib/x86_64-linux-gnu/libgstreamer-1.0.so: undefined symbol: gst_date_get_type
 A library relies on native code that's not available.
 Or only works properly when the sketch is run as a 32-bit application.
 UnsatisfiedLinkError: Error looking up function 'gst_date_get_type': /usr/lib/x86_64-linux-gnu/libgstreamer-1.0.so: undefined symbol: gst_date_get_type
 ```
 
-This is because version 1.0 of the video library in Processing uses gstreamer 0.10.x, which is deprecated and may not be present on your installed Linux distribution. Processing is in the process of releasing v2.0 of the library, which has been updated to use gstreamer 1.x library. But the new version has not been released on the Contributions Manager.
+This is because version 1.0 of the video library in Processing uses gstreamer 0.10.x, which is deprecated and may not be present on your installed Linux distribution. Processing is in the process of releasing v2.0 of the library, which has been updated to use gstreamer 1.x library. But the new version has not been released on the Contributions Manager yet.
 
-There are two solutions, you could side load the gstreamer 0.10.x library on your system -OR- install the latest beta of the Video library manually.
+There are two solutions; you could sideload the gstreamer 0.10.x library on your system -OR - install the latest beta of the Video library manually.
 
 Download the beta of the video library from this location:
 
 <https://github.com/gohai/processing-video/releases/download/v1.0.2/video.zip>
 
-Extract the archive. Go to your `home/<yourusername>/sketchbook/libraries` folder. Rename the video folder to VIDEO_OLD. Copy the 'video' folder from the extracted archive into the `home/<yourusername>/sketchbook/libraries`. NOTE: Be sure to keep the original video library so you can revert back to the original library version.
+Extract the archive. Go to your `home/<yourusername>/sketchbook/libraries` folder. Rename the video folder to VIDEO_OLD. Copy the 'video' folder from the extracted archive into the `home/<yourusername>/sketchbook/libraries`. NOTE: Be sure to keep the original video library so you can revert back to the original library version if needed.
 
-## Usage
+## Using Bumper Scripter
 
-To use the script. Make sure you followed the installation instructions in the previous paragraph.
+To use Bumper Scripter, make sure you followed the installation instructions in the previous paragraph.
 
-In the menu choose: File->Open Navigate to the location where you have cloned the `publiccodebumper` project and open the `publiccodebumper.pde` file and press the PLAY button.
+In the menu choose: File->Open Navigate to the location where you have cloned the `publiccodebumper` project and open the `publiccodebumper.pde` file and press the ▶️ (Run) button.
 
-The script will wait 3 seconds and will start create a MP4 video file in the same folder where the Processing script is located. The default filename is "publiccodebumper-out.mp4".
+The script will wait 3 seconds and will start create a MP4 video file in the same folder where the Processing script is located. The default filename is "publiccodebumper-out.mp4" but it can be changed (see below).
 
-You use this file to play at the beginning of your livestream prerecorded video podcast.
+The file output is the one to play at the beginning of your livestreamed video.
 
 The script has a number of variables you can configure to create a video which fits your needs.
 
-At the top of the `publiccodebumper.pde` script you will find the most important variables. Below is a table with their default value and where the are used for. After changing the variables to your liking you can re-generate the video again until your are satisfied with the result.
+At the top of the `publiccodebumper.pde` script you will find the most important variables. Below is a table with their default value and what they are used for. After changing the variables to your liking you can generate the video again, repeating until you are satisfied with the result.
 
 Variable                   | Used for                                                               | Notes
 -------------------------- | ---------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -103,7 +99,7 @@ Variable                   | Used for                                           
 `String audioFilename`     | Set desired Audiofile for use as background audio                      | You can use audio files in uncompressed WAV (16-bit) or MP3\. Depending on the installed codecs on your machine mmpeg can transcode other formats as well.
 `int movieDuration`        | Set the total desired movie duration in seconds
 
-You can customize the script more by changing the introduction bumper as well as the background image and the pulsing live badge. Find the `void setup ()` function and look up the code below. Please note that all external media assets must reside in the `data` sub-folder relative to the location of the Processing script.
+You can customize the script more by changing the introduction movie as well as the following background image and the pulsing live badge. Find the `void setup ()` function and look up the code below. Please note that all external media assets must reside in the `data` sub-folder relative to the location of the Processing script.
 
 ```processing
   //Assign media assets
@@ -120,19 +116,19 @@ You can customize the script more by changing the introduction bumper as well as
   liveBadge = loadImage("livebadge.png");
 ```
 
-## Technical Implementation notes
+## Technical implementation notes
 
 The script works as follows:
 
 1. Create a video export object
-2. Play and read each frame of a configureable movie file to start with (your won bumper animation)
+2. Play and read each frame of a configureable movie file to start with (your own bumper animation)
 3. Export each frame on the video export object
 4. Read a configureable background picture
 5. Add user configureable text on the background
 6. Show a live badge PNG with animation (live badge is also user configurable)
 7. When the configured duration has passed save the last frame and exit script.
 
-You can time the above sequence to your likingn in the `switch (timer)` section of the `void draw()` function. This function is called for every frame of the animation. You can also add new animations or Processing code to your liking.
+You can time the above sequence to your liking in the `switch (timer)` section of the `void draw()` function. This function is called for every frame of the animation. You can also add new animations or Processing code to your liking.
 
 ## Contribute
 
