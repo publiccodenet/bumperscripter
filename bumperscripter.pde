@@ -41,7 +41,6 @@ VideoExport videoExport;
 PFont fontMulishRegular48, fontMulishSemiBold48, fontMulishBold80;
 
 //Logo and imagedata needed for animation
-PShape vectorlogo;
 PImage lobbyBackground, liveBadge;
 
 
@@ -85,9 +84,6 @@ void setup() {
 
   //Select which logo bumper to use at the beginning
   introMovie = new Movie(this, "logo-bumper-v2.mp4");
-
-  // Logo
-  vectorlogo = loadShape("mark.svg");
 
   // Background image used for waiting lobby
   lobbyBackground = loadImage("intro-brackground.png");
