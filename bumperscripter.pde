@@ -21,7 +21,7 @@ boolean longTitle = false;
 String OutputFile = "bumperscripter-out.mp4";
 
 //Set desired Audiofile for use as background audio
-//String audioFilename = "publiccodepodcast-sonic-chapter-long.wav";
+
 String audioFilename = "publiccodepodcast-leader-long.wav";
 
 //Set desired movie duration in seconds
@@ -200,7 +200,7 @@ void draw() {
 
       // Animate the Live blinking badge
       angle += 0.05;
-      theta = 0.5 + (0.5 * sin(angle)); //DIFFERENCE TO A SMOOTHER OSCILATION//Animate the
+      theta = 0.5 + (0.5 * sin(angle)); //DIFFERENCE TO A SMOOTHER OSCILATION
       pushMatrix();
       translate(0, 0);
       scale(theta);
@@ -210,7 +210,6 @@ void draw() {
   }
 
   //Update the timer in seconds
-  //timer = round (millis()/1000);
   timer = round(frameCount/movieFPS);
 
 
