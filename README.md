@@ -4,7 +4,10 @@ A script made in [Processing 3.0](https://processing.org) to easily generate var
 
 When producing livestreams you want an introduction video for people who are joining the livestream so they know that the stream is online, active and about to start.
 
-We could use a static video but it would be better to cutomize them since topics and guests may change. In order not to have to produce / render a new video for every episode, this script will generate a introduction video automatically. By setting a few variables you can configure how long the video should be, what the topic is and who the guests are. In addition you can also cutsomize the starting animation, logo, background and background music to suit whatever show you might have.
+You could use the same video every time but it would be better to customize it since topics and guests may change.
+To simplify the production of a new video for every episode, this script will generate a introduction video automatically.
+By setting a few variables you can configure how long the video should be, what the topic is and who the guests are.
+In addition you can also customize the starting animation, logo, background and background music to fit whatever show you might have.
 
 ## Install
 
@@ -23,7 +26,10 @@ If you already have these installed you can skip directly to [Get source](#get-s
 
 ### Installing FFmpeg
 
-You need to download and install [FFmpeg](http://ffmpeg.org/) on your system before you can use the Bumper Scripter. Note that you might already have it installed! You can find out by typing ffmpeg or ffmpeg.exe in the terminal. If the program is not found:
+You need to download and install [FFmpeg](http://ffmpeg.org/) on your system before you can use the Bumper Scripter.
+Note that you might already have it installed!
+You can find out by typing ffmpeg or ffmpeg.exe in the terminal.
+If the program is not found:
 
 - GNU/Linux systems: use your favorite package manager.
 - Windows: get a [static 32bit or 64bit binary](http://ffmpeg.zeranoe.com/builds/)
@@ -31,7 +37,9 @@ You need to download and install [FFmpeg](http://ffmpeg.org/) on your system bef
 
 For more details and download links, check the official FFmpeg website: [http://ffmpeg.org](http://ffmpeg.org/)
 
-When you start a Processing sketch that uses this library you may be asked to indicate the location of your FFmpeg executable. Browse to the location of the ffmpeg executable. (NOTE: ffmpeg is installed by default on a lot of Linux distributions by default.)
+When you start a Processing sketch that uses this library you may be asked to indicate the location of your FFmpeg executable.
+Browse to the location of the ffmpeg executable.
+(NOTE: ffmpeg is installed by default on a lot of Linux distributions by default.)
 
 For more information about using ffmpeg to export video in Processing please refer to: [https://github.com/hamoid/video_export_processing](https://github.com/hamoid/video_export_processing).
 
@@ -65,7 +73,9 @@ Or only works properly when the sketch is run as a 32-bit application.
 UnsatisfiedLinkError: Error looking up function 'gst_date_get_type': /usr/lib/x86_64-linux-gnu/libgstreamer-1.0.so: undefined symbol: gst_date_get_type
 ```
 
-This is because version 1.0 of the video library in Processing uses gstreamer 0.10.x, which is deprecated and may not be present on your installed Linux distribution. Processing is in the process of releasing v2.0 of the library, which has been updated to use gstreamer 1.x library. But the new version has not been released on the Contributions Manager yet.
+This is because version 1.0 of the video library in Processing uses gstreamer 0.10.x, which is deprecated and may not be present on your installed Linux distribution.
+Processing is in the process of releasing v2.0 of the library, which has been updated to use gstreamer 1.x library.
+But the new version has not been released on the Contributions Manager yet.
 
 There are two solutions; you could sideload the gstreamer 0.10.x library on your system -OR - install the latest beta of the Video library manually.
 
@@ -73,33 +83,42 @@ Download the beta of the video library from this location:
 
 <https://github.com/gohai/processing-video/releases/download/v1.0.2/video.zip>
 
-Extract the archive. Go to your `home/<yourusername>/sketchbook/libraries` folder. Rename the video folder to VIDEO_OLD. Copy the 'video' folder from the extracted archive into the `home/<yourusername>/sketchbook/libraries`. NOTE: Be sure to keep the original video library so you can revert back to the original library version if needed.
+Extract the archive.
+Go to your `home/<yourusername>/sketchbook/libraries` folder.
+Rename the video folder to VIDEO_OLD.
+Copy the 'video' folder from the extracted archive into the `home/<yourusername>/sketchbook/libraries`.
+NOTE: Be sure to keep the original video library so you can revert back to the original library version if needed.
 
 ## Using Bumper Scripter
 
 To use Bumper Scripter, make sure you followed the installation instructions in the previous paragraph.
 
-In the menu choose: File->Open Navigate to the location where you have cloned the `publiccodebumper` project and open the `publiccodebumper.pde` file and press the ▶️ (Run) button.
+In the menu choose: File->Open Navigate to the location where you have cloned the `bumperscripter` project and open the `bumperscripter.pde` file and press the ▶️ (Run) button.
 
-The script will wait 3 seconds and will start create a MP4 video file in the same folder where the Processing script is located. The default filename is "publiccodebumper-out.mp4" but it can be changed (see below).
+The script will wait 3 seconds and will start create a MP4 video file in the same folder where the Processing script is located.
+The default filename is "bumperscripter-out.mp4" but it can be changed (see below).
 
 The file output is the one to play at the beginning of your livestreamed video.
 
 The script has a number of variables you can configure to create a video which fits your needs.
 
-At the top of the `publiccodebumper.pde` script you will find the most important variables. Below is a table with their default value and what they are used for. After changing the variables to your liking you can generate the video again, repeating until you are satisfied with the result.
+At the top of the `bumperscripter.pde` script you will find the most important variables.
+Below is a table with their default value and what they are used for.
+After changing the variables to your liking you can generate the video again, repeating until you are satisfied with the result.
 
-Variable                   | Used for                                                               | Notes
--------------------------- | ---------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------
-`String topic`             | Set the topic title of the video                                       | If the title is running off-screen you can set `longTitle = true`
-`String guest`             | Set the name of the guest(s)                                           |
-`String guestOrganization` | Set the name of the organization of the guest                          |
-`boolean longTitle`        | When title is too long to fit screen set longTitle to true             | default is `false`
-`String OutputFile`        | Set desired output filename for generated animation in MP4 file format |
-`String audioFilename`     | Set desired Audiofile for use as background audio                      | You can use audio files in uncompressed WAV (16-bit) or MP3\. Depending on the installed codecs on your machine mmpeg can transcode other formats as well.
-`int movieDuration`        | Set the total desired movie duration in seconds
+Variable            | Type    | Used for                                                               | Notes
+--------------------|---------| ---------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------
+`topic`             | String  | Set the topic title of the video                                       | If the title is running off-screen you can set `longTitle = true`
+`guest`             | String  | Set the name of the guest(s)                                           |
+`guestOrganization` | String  | Set the name of the organization of the guest                          |
+`longTitle`         | boolean | When title is too long to fit screen set longTitle to true             | default is `false`
+`OutputFile`        | String  | Set desired output filename for generated animation in MP4 file format |
+`audioFilename`     | String  | Set desired Audiofile for use as background audio                      | You can use audio files in uncompressed WAV (16-bit) or MP3\. Depending on the installed codecs on your machine mmpeg can transcode other formats as well.
+`movieDuration`     | int     | Set the total desired movie duration in seconds                        |
 
-You can customize the script more by changing the introduction movie as well as the following background image and the pulsing live badge. Find the `void setup ()` function and look up the code below. Please note that all external media assets must reside in the `data` sub-folder relative to the location of the Processing script.
+You can customize the script more by changing the introduction movie as well as the following background image and the pulsing live badge.
+Find the `void setup ()` function and look up the code below.
+Please note that all external media assets must reside in the `data` sub-folder relative to the location of the Processing script.
 
 ```processing
   //Assign media assets
@@ -128,19 +147,27 @@ The script works as follows:
 6. Show a live badge PNG with animation (live badge is also user configurable)
 7. When the configured duration has passed save the last frame and exit script.
 
-You can time the above sequence to your liking in the `switch (timer)` section of the `void draw()` function. This function is called for every frame of the animation. You can also add new animations or Processing code to your liking.
+You can time the above sequence to your liking in the `switch (timer)` section of the `void draw()` function.
+This function is called for every frame of the animation.
+You can also add new animations or Processing code to your liking.
 
 ## Contribute
 
-@TODO
+We would be delighted if you want to contribute.
+Take a look at [CONTRIBUTING](CONTRIBUTING.md) for details on how to do that.
+The [GOVERNANCE](GOVERNANCE.md) explains how decions are made in this repository.
+We require you to follow our [CODE OF CONDUCT](CODE_OF_CONDUCT.md) when contributing.
 
 ## License
 
 Music is composed by Felix Faassen (<https://www.lonebeard.com>) and is licensed under a [Creative Commons Attribution-ShareAlike 4.0 International](https://creativecommons.org/licenses/by-sa/4.0/) license.
 
-The script is licensed <https://creativecommons.org/publicdomain/zero/1.0/>
+The script itself is licensed [Creative Commons Zero](https://creativecommons.org/publicdomain/zero/1.0/).
 
 All other software and libraries have their respective license.
+
+While not required under the license, we would love to see examples of the bumpers you create with this script.
+Please [ping us on Twitter](https://twitter.com/publiccodenet) with a link to your livestreamed video.
 
 ## Resources
 
