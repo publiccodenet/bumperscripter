@@ -18,7 +18,7 @@ String guestOrganization = "Organization" ;
 boolean longTitle = false;
 
 //Set desired output filename for generated animation in MP4 file format
-String OutputFile = "publiccodebumper-out.mp4";
+String OutputFile = "bumperscripter-out.mp4";
 
 //Set desired Audiofile for use as background audio
 //String audioFilename = "publiccodepodcast-sonic-chapter-long.wav";
