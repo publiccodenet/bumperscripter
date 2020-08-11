@@ -39,7 +39,7 @@ For more details and download links, check the official FFmpeg website: [http://
 
 When you start a Processing sketch that uses this library you may be asked to indicate the location of your FFmpeg executable.
 Browse to the location of the ffmpeg executable.
-(NOTE: ffmpeg is installed by default on a lot of Linux distributions by default.)
+(NOTE: ffmpeg is installed on a lot of Linux distributions by default.)
 
 For more information about using ffmpeg to export video in Processing please refer to: [https://github.com/hamoid/video_export_processing](https://github.com/hamoid/video_export_processing).
 
