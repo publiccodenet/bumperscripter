@@ -6,7 +6,7 @@ import processing.video.*;
 // Video titleling settings
 
 //Set the topic title of the video
-String topic = "Let's talk Public Code";
+String topic = "Train talks";
 
 //Set the name of the guest
 String guest = "Cool Guest Speaker";
@@ -21,11 +21,10 @@ boolean longTitle = false;
 String OutputFile = "bumperscripter-out.mp4";
 
 //Set desired Audiofile for use as background audio
-
-String audioFilename = "publiccodepodcast-leader-long.wav";
+String audioFilename = "Komiku_-_02_-_Chill_Out_Theme-shortened.mp3";
 
 //Set desired movie duration in seconds
-int movieDuration = 81; // in seconds
+int movieDuration = 84; // in seconds
 
 
 // Framerates and VideoExport
@@ -83,10 +82,10 @@ void setup() {
   //Assign media assets
 
   //Select which logo bumper to use at the beginning
-  introMovie = new Movie(this, "logo-bumper-v2.mp4");
+  introMovie = new Movie(this, "intro-video.mp4");
 
   // Background image used for waiting lobby
-  lobbyBackground = loadImage("intro-brackground.png");
+  lobbyBackground = loadImage("intro-background.png");
   // Live badge logo
   liveBadge = loadImage("livebadge.png");
 
