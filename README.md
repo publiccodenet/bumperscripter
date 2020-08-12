@@ -45,13 +45,13 @@ For more information about using ffmpeg to export video in Processing please ref
 
 ### Get source
 
-Clone the source for Github: `git clone https://github.com/publiccodenet/publiccodebumper.git`
+Clone the source for Github: `git clone https://github.com/publiccodenet/bumperscripter.git`
 
 ### Installing required Processing libraries
 
 1. Start Processing
 2. In the menu choose: File->Open
-3. Navigate to the location where you have cloned the `publiccodebumper` project and open the `publiccodebumper.pde` file
+3. Navigate to the location where you have cloned the `bumperscripter` project and open the `bumperscripter.pde` file
 4. In the menu choose: Tools->Add Tools
 5. Click on the tab 'Libraries'
 6. In the 'Filter' input field type 'video'
@@ -124,13 +124,10 @@ Please note that all external media assets must reside in the `data` sub-folder 
   //Assign media assets
 
   //Select which logo bumper to use at the beginning
-  introMovie = new Movie(this, "logo-bumper-v2.mp4");
-
-  // Logo
-  vectorlogo = loadShape("mark.svg");
+  introMovie = new Movie(this, "intro-video.mp4");
 
   // Background image used for waiting lobby
-  lobbyBackground = loadImage("intro-brackground.png");
+  lobbyBackground = loadImage("intro-background.png");
   // Live badge logo
   liveBadge = loadImage("livebadge.png");
 ```
@@ -160,14 +157,20 @@ We require you to follow our [CODE OF CONDUCT](CODE_OF_CONDUCT.md) when contribu
 
 ## License
 
-Music is composed by Felix Faassen (<https://www.lonebeard.com>) and is licensed under a [Creative Commons Attribution-ShareAlike 4.0 International](https://creativecommons.org/licenses/by-sa/4.0/) license.
-
-The script itself is licensed [Creative Commons Zero](https://creativecommons.org/publicdomain/zero/1.0/).
+The script is [licensed](LICENSE.md) [Creative Commons Zero](https://creativecommons.org/publicdomain/zero/1.0/).
 
 All other software and libraries have their respective license.
 
 While not required under the license, we would love to see examples of the bumpers you create with this script.
 Please [ping us on Twitter](https://twitter.com/publiccodenet) with a link to your livestreamed video.
+We will add links to the ones we like most in this repository.
+
+### Attribution
+
+Example media is all licensed [CC 0](https://creativecommons.org/publicdomain/zero/1.0).
+* Music: [Chill Out Theme](https://freemusicarchive.org/music/Komiku/Its_time_for_adventure__vol_2/Komiku_-_Its_time_for_adventure_vol_2_-_02_Chill_Out_Theme) by [Komiku](https://freemusicarchive.org/music/Komiku/) (shortened)
+* Video: [Spain Metro tunnel](https://commons.wikimedia.org/wiki/File:Spain_Metro_tunnel.webm) by [tiburi](https://pixabay.com/en/users/tiburi-2851152/?tab=videos) (slowed down, fade and blur added)
+* Graphic: [Trains icons (evolution) SVG](https://commons.wikimedia.org/wiki/File:Trains_icons_(evolution)_SVG.svg) by [Sameboat](https://commons.wikimedia.org/wiki/User:Sameboat), [Richtom80](https://en.wikipedia.org/wiki/User:Richtom80) and [Offnfopt](https://commons.wikimedia.org/wiki/User:Offnfopt)
 
 ## Resources
 
