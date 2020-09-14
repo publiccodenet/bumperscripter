@@ -1,4 +1,4 @@
-# Bumper Scripter
+# Bumperscripter
 
 A script made in [Processing 3.0](https://processing.org) to easily generate variations of a livestreamed video bumper animation.
 
@@ -26,7 +26,7 @@ If you already have these installed you can skip directly to [Get source](#get-s
 
 ### Installing FFmpeg
 
-You need to download and install [FFmpeg](http://ffmpeg.org/) on your system before you can use the Bumper Scripter.
+You need to download and install [FFmpeg](http://ffmpeg.org/) on your system before you can use the Bumperscripter.
 Note that you might already have it installed!
 You can find out by typing ffmpeg or ffmpeg.exe in the terminal.
 If the program is not found:
@@ -89,9 +89,9 @@ Rename the video folder to VIDEO_OLD.
 Copy the 'video' folder from the extracted archive into the `home/<yourusername>/sketchbook/libraries`.
 NOTE: Be sure to keep the original video library so you can revert back to the original library version if needed.
 
-## Using Bumper Scripter
+## Using Bumperscripter
 
-To use Bumper Scripter, make sure you followed the installation instructions in the previous paragraph.
+To use Bumperscripter, make sure you followed the installation instructions in the previous paragraph.
 
 In the menu choose: File->Open Navigate to the location where you have cloned the `bumperscripter` project and open the `bumperscripter.pde` file and press the ▶️ (Run) button.
 
