@@ -32,7 +32,7 @@ You can find out by typing ffmpeg or ffmpeg.exe in the terminal.
 If the program is not found:
 
 - GNU/Linux systems: use your favorite package manager.
-- Windows: get a [static 32bit or 64bit binary](http://ffmpeg.zeranoe.com/builds/)
+- Windows: get a [static 32bit or 64bit binary](https://ffmpeg.org/download.html)
 - Mac: get a [static 64bit binary](http://evermeet.cx/ffmpeg/)
 
 For more details and download links, check the official FFmpeg website: [http://ffmpeg.org](http://ffmpeg.org/)
