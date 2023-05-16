@@ -1,5 +1,7 @@
 # Bumperscripter
 
+[![bumperscripter badge](https://publiccodenet.github.io/publiccodenet-url-check/badges/bumperscripter.svg)](https://publiccodenet.github.io/publiccodenet-url-check/url-check-fails.json)
+
 A script made in [Processing 3.0](https://processing.org) to easily generate variations of a livestreamed video bumper animation.
 
 When producing livestreams you want an introduction video for people who are joining the livestream so they know that the stream is online, active and about to start.
