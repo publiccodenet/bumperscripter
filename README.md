@@ -9,6 +9,12 @@ To simplify the production of a new video for every episode, this script will ge
 By setting a few variables you can configure how long the video should be, what the topic is and who the guests are.
 In addition you can also customize the starting animation, logo, background and background music to fit whatever show you might have.
 
+## Examples
+
+- [Let's talk about public code #11](https://www.youtube.com/watch?v=uddEVGifIs4) - with video, background image, music and both text fields
+- [Wikipediapodden #225](https://www.youtube.com/watch?v=kcxd5kHGD1Y) - with video, background image, music, using only one text field
+- [WikiCite 2020: Citations in Swedish Parliamentary documents](https://www.youtube.com/watch?v=yMtP64yFKn0) - without video and text, but with music and background image
+
 ## Install
 
 To be able to generate a bumper animation you need to install:
